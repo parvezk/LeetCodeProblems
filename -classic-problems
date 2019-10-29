@@ -9,11 +9,12 @@ Longest Palindrom Substring
 Count Differente Palindrom Substrings
 Longest Common Subsequence
 
-Edit Distance
 Permutations
 Subset
 Valid Parenthesis
 Generate Parenthesis
+Anagrams
+Edit Distance
 
 ******************** STRING ALGORITHMS ********************
 
@@ -21,7 +22,7 @@ Minimum Window Substring
 Longest Palindrom Substring
 Longest Common Subsequence
 
-REF**********
+************************ CORE REF *************************
 Intro to Recursive Programming
 Intro to Algorithms (32 String Matching)
 2017 guide to comp programming (14. String Algorithms)
@@ -31,6 +32,11 @@ Data Structures and Algorithms in Python (13. Text Processing)
 
 ONLINE
 https://www.hackerearth.com/practice/algorithms/string-algorithm/
+
+*************** MATH PROB ***************
+Valid perfect square
+perfect square
+Sqrt(x)
 
 ========================================================================================
 Dynamic Programming////////
