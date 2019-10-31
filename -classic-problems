@@ -23,25 +23,15 @@ Minimum Window Substring
 Longest Palindrom Substring
 Longest Common Subsequence
 
-************************ CORE REF *************************
-Intro to Recursive Programming
-Intro to Algorithms (32 String Matching)
-2017 guide to comp programming (14. String Algorithms)
-Algorithm Unplugged (6. Searching Texts – But Fast! The Boyer–Moore–Horspool Algorithm)
-Robert Sedgewick and Kevin Wayne. Algorithms
-Data Structures and Algorithms in Python (13. Text Processing)
+************************ DP PROBLEMS *************************
 
-ONLINE
-https://www.hackerearth.com/practice/algorithms/string-algorithm/
-
-*************** MATH PROB ***************
-Valid perfect square
-perfect square
-Sqrt(x)
-
-========================================================================================
-Dynamic Programming////////
+Knapsack, Equal Subset Sum, Subset Sum,
+https://www.educative.io/courses/grokking-dynamic-programming-patterns-for-coding-interviews/RM1BDv71V60
+Powerset, GCD rangeSum, listSum, floodill, nQueens
 [http://www.kosbie.net/cmu/fall-15/15-112/notes/notes-recursion-part2.html#multipleCases]
+[http://www.kosbie.net/cmu/fall-15/15-112/notes/notes-recursion-examples.html]
+
+
 Fibonacci
 Factoriala
 Valid Palindrome
@@ -49,7 +39,3 @@ Permutations
 Generate all permutations (All subsequences) of string
 Powersets, Subsets
 Towers-of-Hanoi
-
-
-
-
