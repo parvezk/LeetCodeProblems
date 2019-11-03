@@ -23,11 +23,16 @@
 
     output[name] = new Map();
 
-    for (song of songs) {
-      for (const [genre, list] of Object.entries(songGenres)) {
-        if (list.includes(song)) {
-          if (!output[name].has(genre)) output[name].set(genre, 1);
-          else output[name].set(genre, output[name].get(genre) + 1);
+    for (song of songs)
+    {
+      for (const [genre, list] of Object.entries(songGenres))
+      {
+        if (list.includes(song))
+        {
+          if (!output[name].has(genre))
+            output[name].set(genre, 1);
+          else
+            output[name].set(genre, output[name].get(genre) + 1);
         }
       }
     }
