@@ -1,3 +1,7 @@
+/**
+ * Keys and Rooms
+ */
+
 var canVisitAllRooms = function(rooms) {
   
     const visited = new Set([0]);
