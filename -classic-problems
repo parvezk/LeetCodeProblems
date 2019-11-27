@@ -4,6 +4,10 @@ Minimum Window Substring
 Maximum Size Subarray Sum Equals k
 Maximum Length of Repeated Subarray
 
+top-k-frequent-words/
+Longest Substring WIthout Repeating Characters
+permutation-in-string/
+
 Palindrome Substrings
 Longest Palindrom Substring
 Count Differente Palindrom Substrings
@@ -14,14 +18,8 @@ Permutations
 Subset
 Valid Parenthesis
 Generate Parenthesis
-Anagrams
+Anagram
 Edit Distance
-
-******************** STRING ALGORITHMS ********************
-
-Minimum Window Substring
-Longest Palindrom Substring
-Longest Common Subsequence
 
 ************************ DP PROBLEMS *************************
 
@@ -31,7 +29,7 @@ Powerset, GCD rangeSum, listSum, floodill, nQueens
 [http://www.kosbie.net/cmu/fall-15/15-112/notes/notes-recursion-part2.html#multipleCases]
 [http://www.kosbie.net/cmu/fall-15/15-112/notes/notes-recursion-examples.html]
 
-
+**** MATH *******
 Fibonacci
 Factoriala
 Valid Palindrome
