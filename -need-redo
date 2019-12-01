@@ -1,7 +1,11 @@
 ===================================================================================
 NEED REDO / OPTIMAL SOLUTION
 
-Longest Substring WIthout Repeating Characters
+ARARY 2D
+https://leetcode.com/problems/diagonal-traverse/
+https://leetcode.com/problems/spiral-matrix/
+search-a-2d-matrix-i
+
 
 Median of Two Sorted Arrays
 
@@ -17,9 +21,10 @@ https://leetcode.com/problems/permutations/solution/
 // https://www.geeksforgeeks.org/level-order-traversal-in-spiral-form/
 // https://www.geeksforgeeks.org/zig-zag-traversal-of-a-binary-tree-using-recursion/
 
-Spiral Matrix
-Diagnol Traverse
 https://www.baeldung.com/java-loop-diagonal-array
+
+Recursion - subsequence/subset
+http://web.mit.edu/6.005/www/fa16/classes/14-recursion/
 
 ========================================================================================
 
