@@ -3,30 +3,19 @@ NEED REDO / OPTIMAL SOLUTION
 
 ARARY 2D
 search-a-2d-matrix-i
-search-a-2d-matrix
+earch-a-2d-matrix-ii
 https://leetcode.com/problems/diagonal-traverse/
 https://leetcode.com/problems/spiral-matrix/
 
+Move Zeroes
+https://repl.it/@parvezk/LikablePeriodicBusinesssoftware
 
-Median of Two Sorted Arrays
-
-Permutation
-https://leetcode.com/problems/permutations/solution/
-
-  Move Zeroes
-  https://repl.it/@parvezk/LikablePeriodicBusinesssoftware
-  https://www.geeksforgeeks.org/insertion-sort-for-singly-linked-list/
-
-  Binary Tree Zig Zag Level order Traversal
-  //http://www.crazyforcode.com/recursive-spiral-order-traversal-tree/
+Binary Tree Zig Zag Level order Traversal
+//http://www.crazyforcode.com/recursive-spiral-order-traversal-tree/
 // https://www.geeksforgeeks.org/level-order-traversal-in-spiral-form/
 // https://www.geeksforgeeks.org/zig-zag-traversal-of-a-binary-tree-using-recursion/
 
 https://www.baeldung.com/java-loop-diagonal-array
-
-Recursion - subsequence/subset
-http://web.mit.edu/6.005/www/fa16/classes/14-recursion/
-
 ========================================================================================
 
 REVIEW
