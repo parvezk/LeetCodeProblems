@@ -9,28 +9,27 @@
 
 // 1. Sliding Window Template based
 var lengthOfLongestSubstring = function(s) {
-  let HashMap = new Map();
-  HashMap.set(0, 1);
+  const map = new Map();
 
-  let counter = 0,
-    ans = 0,
+  let ans = 0,
+    counter = 0,
     begin = 0,
     end = 0;
 
   while (end < s.length) {
     let c = s.charAt(end);
 
-    if (HashMap.has(c)) HashMap.set(c, HashMap.get(c) + 1);
-    else HashMap.set(c, 1);
+    if (map.has(c)) map.set(c, map.get(c) + 1);
+    else map.set(c, 1);
 
-    if (HashMap.get(c) > 1) counter++;
+    if (map.get(c) > 1) counter++;
+    // Slide right of sliding window
     end++;
-
+    // Sliding left of the window
     while (counter > 0) {
-      let tempChar = s.charAt(begin);
-      if (HashMap.get(tempChar) > 1) counter--;
-      HashMap.set(tempChar, HashMap.get(tempChar) - 1);
-      begin++;
+      let startChar = s.charAt(begin++);
+      if (map.get(startChar) > 1) counter--;
+      map.set(startChar, map.get(startChar) - 1);
     }
     ans = Math.max(ans, end - begin);
   }

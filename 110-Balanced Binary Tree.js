@@ -37,13 +37,6 @@ var isBalanced = function(root) {
   return bst.isBalanced(root);
 };
 
-/*
-[1,2,2,3,3,null,null,4,4]
-[3,9,20,null,null,15,7]
-[]
-[1,2,2,3,null,null,3,4,null,null,4]
-*/
-
 // Approach 2
 class BST {
   constructor() {}

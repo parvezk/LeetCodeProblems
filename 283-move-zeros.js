@@ -4,19 +4,17 @@
  */
 
 // Approach 1
+/**
+ * @param {number[]} nums
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
 var moveZeroes = function(nums) {
-  //if (!nums.includes(0)) return nums;
-
   let lastNonZeroFoundAt = 0;
 
   for (let i = 0; i < nums.length; i++) {
-    if (nums[i] != 0) {
-      nums.copyWithin(lastNonZeroFoundAt, i, i + 1);
-      lastNonZeroFoundAt++;
-    }
+    if (nums[i] != 0) nums.copyWithin(lastNonZeroFoundAt++, i, i + 1);
   }
-
-  nums.fill(0, lastNonZeroFoundAt, nums.length);
+  nums.fill(0, lastNonZeroFoundAt);
 };
 
 // Approach above

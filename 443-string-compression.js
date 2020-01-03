@@ -2,28 +2,61 @@
  * @param {character[]} chars
  * @return {number}
  */
-//
+// Approach 1
+/**
+ * @param {character[]} chars
+ * @return {number}
+ */
 var compress = function(chars) {
-  let index = 0,
-    resIndex = 0;
+  if (chars.length == 1) return chars.length;
 
-  while (index < chars.length) {
-    let char = chars[index],
-      count = 1;
+  let resIndex = 0,
+    index = 0,
+    count = 0;
 
-    while (index + 1 < chars.length && chars[index + 1] == char) {
+  for (let index = 0; index < chars.length; index++) {
+    let char = chars[index];
+    let count = 1;
+
+    while (char == chars[index + 1]) {
       index++;
       count++;
     }
-
     chars[resIndex++] = char;
-    index++;
     if (count == 1) continue;
+
     for (let c of "" + count + "") chars[resIndex++] = c;
   }
   chars.length = resIndex;
   return chars.length;
 };
+
+// Approach 1 modified
+var compress = function(chars) {
+  if (chars.length == 1) return chars.length;
+
+  let resIndex = 0,
+    index = 0,
+    count = 0;
+
+  while (index < chars.length) {
+    let char = chars[index];
+    let count = 1;
+
+    while (char == chars[index + 1]) {
+      index++;
+      count++;
+    }
+    chars[resIndex++] = char;
+    index++;
+    if (count == 1) continue;
+
+    for (let c of "" + count + "") chars[resIndex++] = c;
+  }
+  chars.length = resIndex;
+  return chars.length;
+};
+
 // Read and Write Heads
 var compress = function(chars) {
   let anchor = 0,

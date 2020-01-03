@@ -10,6 +10,41 @@
  * @return {number[]}
  */
 
+// Using DFS
+var rightSideView = function(root) {
+  const res = [];
+
+  const DFS = (node, depth) => {
+    if (!node) return;
+    if (depth == res.length) res.push(node.val);
+    DFS(node.right, depth + 1);
+    DFS(node.left, depth + 1);
+  };
+
+  DFS(root, 0);
+  return res;
+};
+
+// Using BFS
+var rightSideView = function(root) {
+  const res = [];
+  if (root == null) return res;
+
+  const q = [root];
+  while (q.length) {
+    let n = q.length;
+    for (let i = 0; i < n; i++) {
+      let p = q.shift();
+      if (p.left) q.push(p.left);
+      if (p.right) q.push(p.right);
+      if (i == n - 1) res.push(p.val);
+    }
+  }
+  return res;
+};
+
+// OTHER *****************************************
+
 // DFS APPROACH
 var rightSideView = function(root) {
   const rightMostValueAtDepth = new Map(),
@@ -43,5 +78,3 @@ var rightSideView = function(root) {
    * end. */
   return [...rightMostValueAtDepth.values()];
 };
-
-// BFS Approach

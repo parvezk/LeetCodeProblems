@@ -2,8 +2,40 @@
  * @param {number[][]} matrix
  * @return {number[]}
  */
-// Simulation Approach
-var spiralOrder = function(matrix) {};
+// Approach
+var spiralOrder = function(matrix) {
+  let res = [];
+  if (matrix.length == 0) return res;
+
+  let rowBegin = 0,
+    rowEnd = matrix.length - 1,
+    colBegin = 0,
+    colEnd = matrix[0].length - 1;
+
+  while (rowBegin <= rowEnd && colBegin <= colEnd) {
+    //
+    for (let i = colBegin; i <= colEnd; i++) res.push(matrix[rowBegin][i]);
+
+    rowBegin++;
+
+    for (let i = rowBegin; i <= rowEnd; i++) res.push(matrix[i][colEnd]);
+
+    colEnd--;
+
+    if (rowBegin <= rowEnd) {
+      for (let i = colEnd; i >= colBegin; i--) res.push(matrix[rowEnd][i]);
+    }
+
+    rowEnd--;
+
+    if (colBegin <= colEnd) {
+      for (let i = rowEnd; i >= rowBegin; i--) res.push(matrix[i][colBegin]);
+    }
+
+    colBegin++;
+  }
+  return res;
+};
 
 // Layer by Layer
 var spiralOrder = function(matrix) {
