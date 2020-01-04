@@ -36,8 +36,8 @@ var candyCrush = function(board) {
       }
     }
   }
-
-  for (let c = 0; c < C; ++c) {
+  // Crushing and leveling step
+  for (let c = 0; c < C; c++) {
     let wr = R - 1;
     // Gravity Step
     for (r = R - 1; r >= 0; r--) {

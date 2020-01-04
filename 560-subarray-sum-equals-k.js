@@ -3,6 +3,27 @@
  * @param {number} k
  * @return {number}
  */
+//Why do we want to find (sum-k) in our hash table?
+//Because we need to find a subarray whose sum equals k. As we use prefix sum, so we could look up whether there are two subarrays(starting from index 0) and their subtraction equals k. Currently, we get the sum starting from index 0 equals to sum. So, we should look up whether there is a subarray starting from index 0, equals to (sum - k)
+
+// Using HashMap - Cumulative Sum (Remember Animation with live var updates)
+var subarraySum = function(nums, k) {
+  // (sum[i],no.ofoccurencesofsum[i])
+  let HashMap = new Map();
+  HashMap.set(0, 1);
+  let counter = 0,
+    sum = 0;
+
+  for (n of nums) {
+    sum += n;
+
+    if (HashMap.has(sum - k)) counter += HashMap.get(sum - k);
+
+    if (HashMap.has(sum)) HashMap.set(sum, HashMap.get(sum) + 1);
+    else HashMap.set(sum, 1);
+  }
+  return counter;
+};
 
 // Using Cumulative Sum Array
 var subarraySum = function(nums, k) {
@@ -34,25 +55,6 @@ var subarraySum = function(nums, k) {
 
       if (sum == k) counter++;
     }
-  }
-  return counter;
-};
-
-// Using HashMap - Cumulative Sum (Remember Animation with live var updates)
-var subarraySum = function(nums, k) {
-  // (sum[i],no.ofoccurencesofsum[i])
-  let HashMap = new Map();
-  HashMap.set(0, 1);
-  let counter = 0,
-    sum = 0;
-
-  for (n of nums) {
-    sum += n;
-
-    if (HashMap.has(sum - k)) counter += HashMap.get(sum - k);
-
-    if (HashMap.has(sum)) HashMap.set(sum, HashMap.get(sum) + 1);
-    else HashMap.set(sum, 1);
   }
   return counter;
 };

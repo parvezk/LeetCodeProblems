@@ -62,12 +62,11 @@ var numberToWords = function(num) {
     index = 0;
 
   while (num > 0) {
-    if (num % 1000 != 0) {
-      let tmp = helpers("", num % 1000);
-      str = tmp + THOUSANDS[index] + " " + str;
-    }
+    if (num % 1000 != 0)
+      str = helper("", num % 1000) + THOUSANDS[index] + " " + str;
+
+    num = Math.trunc(num / 1000);
     index++;
-    num = Number.parseInt(num / 1000);
   }
   return str.trim();
 };
