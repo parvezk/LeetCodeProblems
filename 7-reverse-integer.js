@@ -3,12 +3,13 @@
  * @return {number}
  */
 var reverse = function(x) {
-    let sign = Math.sign(x)
-    let n = Math.abs(x);
-    let result = 0;
-    while (n) {
-        result = (n % 10) + (result * 10)
-        n = Math.trunc(n / 10);
-    }
-    return (result > 0x7FFFFFFF) ? 0 : (sign < 0) ? -result : result;
+  let sign = Math.sign(x),
+    num = Math.abs(x),
+    reversed = 0;
+
+  while (num > 0) {
+    reversed = reversed * 10 + (num % 10);
+    num = Math.trunc(num / 10);
+  }
+  return reversed > Math.pow(2, 32) ? 0 : sign < 0 ? -reversed : reversed;
 };

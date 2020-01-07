@@ -3,6 +3,9 @@
  * @param {number[][]} board
  * @return {number[][]}
  */
+
+// Clean solution : https://leetcode.com/problems/candy-crush/discuss/112727/java-omn-per-iteration-verbose-easy-clean-explained-commented
+
 var candyCrush = function(board) {
   const R = board.length,
     C = board[0].length;

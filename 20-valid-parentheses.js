@@ -2,6 +2,31 @@
  * @param {string} s
  * @return {boolean}
  */
+
+// Approach 1
+// Using Stack and HashMap
+var isValid = function(s) {
+  const mappings = new Map(),
+    stack = [];
+
+  mappings.set(")", "(");
+  mappings.set("}", "{");
+  mappings.set("]", "[");
+
+  for (let i = 0; i < s.length; i++) {
+    let char = s.charAt(i);
+
+    if (mappings.has(char)) {
+      let topElement = stack.length ? stack.pop() : "#";
+
+      if (topElement != mappings.get(char)) return false;
+    } else stack.push(char);
+  }
+  return !stack.length;
+};
+
+// Approach 2
+
 // Stack Class
 class Stack {
   constructor() {

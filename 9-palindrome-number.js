@@ -4,29 +4,17 @@
  * @param {number} x
  * @return {boolean}
  */
-var isPalindrome = function(x) {
-    x = x.toString();
-    let i = 0; j = x.length - 1;
-    while (i < x.length / 2)
-        {
-            if (x[i] != x[j]) return false;
-            i++;
-            j--;
-        }
-    return true;
-};
+// NO CONVERSION TO STRING SOLUTION NEEDED
 
-// Solution 2
-/**
- * @param {number} x
- * @return {boolean}
- */
 var isPalindrome = function(x) {
-    //console.log(x.slice(1, x.length-1))
-    x = x.toString();
-    let n = x.length;
-    if (n <= 1)
-        return true;
-    else
-        return (x[0] == x[n-1]) && isPalindrome(x.slice(1, n-1));
+  if (x < 0 || (x % 10 == 0 && x != 0)) return false;
+
+  let num = x;
+  let reverseNum = 0;
+  while (num > 0) {
+    reverseNum = reverseNum * 10 + (num % 10);
+    num = Math.trunc(num / 10);
+  }
+
+  return x == reverseNum || x == Math.trunc(reverseNum / 10);
 };
