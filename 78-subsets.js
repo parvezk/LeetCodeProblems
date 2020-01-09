@@ -32,3 +32,25 @@ const subsets = nums => {
   }
   return output;
 };
+
+// Approach 3: Backtracking
+var subsets = function(nums) {
+  let output = [],
+    n = nums.length;
+  var k;
+
+  const backtrack = (first = 0, curr = []) => {
+    // if the combination is done
+    if (curr.length == k) output.push([curr]);
+
+    for (let i = first; i < n; ++i) {
+      curr.push(nums[i]);
+      backtrack(i + 1, curr);
+      curr.pop();
+    }
+  };
+
+  for (k = 0; k < n + 1; ++k) backtrack();
+
+  return output;
+};
