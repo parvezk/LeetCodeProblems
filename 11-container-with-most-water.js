@@ -20,7 +20,7 @@ var maxArea = function(height) {
   return ans;
 };
 
-// Two pointer - Modified
+// Two pointer approach - Modified
 var maxArea = function(height) {
   let maxarea = 0,
     l = 0,
