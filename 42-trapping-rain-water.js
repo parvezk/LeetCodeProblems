@@ -31,20 +31,18 @@ var trap = function(height) {
 // Using dynamic Programming
 var trap = function(height) {
   let ans = 0,
-    size = height.length;
-  let left_max = new Array(size).fill(0),
+    size = height.length,
+    left_max = new Array(size).fill(0),
     right_max = new Array(size).fill(0);
 
   left_max[0] = height[0];
   right_max[size - 1] = height[size - 1];
 
-  for (let i = 1; i < size; i++) {
+  for (let i = 1; i < size; i++)
     left_max[i] = Math.max(height[i], left_max[i - 1]);
-  }
 
-  for (let i = size - 2; i >= 0; i--) {
+  for (let i = size - 2; i >= 0; i--)
     right_max[i] = Math.max(height[i], right_max[i + 1]);
-  }
 
   for (let i = 0; i < size; i++)
     ans += Math.min(left_max[i], right_max[i]) - height[i];
