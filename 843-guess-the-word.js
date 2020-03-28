@@ -16,8 +16,8 @@
  * @param {Master} master
  * @return {void}
  */
-var findSecretWord = function(wordlist, master) {
-    
+var findSecretWord = function (wordlist, master) {
+
   const match = (a, b) => {
     let matches = 0;
     for (let i = 0; i < a.length; i++) {
@@ -26,14 +26,14 @@ var findSecretWord = function(wordlist, master) {
     //console.log('matches', matches)
     return matches;
   }
-  
+
   for (let i = 0, x = 0; i < 10 && x < 6; i++) {
-    
+
     const count = new Map();
     for (let w of wordlist) {
       count.set(w, 0);
     }
-    
+
     // guess the words with the least 0 matches
     for (let w1 of wordlist) {
       for (let w2 of wordlist) {
@@ -42,24 +42,24 @@ var findSecretWord = function(wordlist, master) {
         }
       }
     }
- 
+
     // search through wordlist to find words that has most non-zero matches (least minimum 0 matches)
     let minimax = [wordlist[0], 1000];
     for (let w of wordlist) {
       if (count.get(w) <= minimax[1])
         minimax = [w, count.get(w)];
     }
-      
+
     let guess = minimax[0];
     let x = master.guess(guess);
     const wordlist2 = [];
- 
+
     for (let w of wordlist) {
       if (match(guess, w) == x)
         wordlist2.push(w);
- 
+
       wordlist = wordlist2;
     }
   }
-   return wordlist;
- }
+  return wordlist;
+}
