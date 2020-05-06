@@ -15,7 +15,6 @@ var findReplaceString = function(S, indexes, sources, targets) {
         if (S.substring(ix, ix + sources[i].length) == sources[i])
             match[ix] = i;
     }
-
     let ans = '';
     let ix = 0;
     while (ix < N) {
