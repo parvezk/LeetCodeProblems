@@ -9,78 +9,55 @@
  * @param {ListNode[]} lists
  * @return {ListNode}
  */
-class HeapType {
-    
-    constructor() {
-      this.elements = [];
-    }
+const top = 0,
+      parent = i => ((i + 1) >> 1) - 1,
+      left = i => (i << 1) + 1,
+      right = i => (i + 1) << 1;
+
+class PriorityQueue {
+  constructor(comparator = (a, b) => a < b) {
+    this._heap = [];
+    this._comparator = comparator;
+  }
   
-    ReheapUp(root, bottom) 
+  size = () => this._heap.length;
+  peek = () => this._heap[top];
+
+  enqueue = val => {
+    this._heap.push(val);
+    this._ReHeapUp();
+  }
+  
+  dequeue = () => {
+    const popVal = this.peek(),
+          bottom = this.size() - 1;
+    if (bottom > top) this._swap(top, bottom);
+    this._heap.pop();
+    this._ReHeapDown();
+    return popVal;
+  }
+  
+  _greater = (i, j) => this._comparator(this._heap[i], this._heap[j]);
+  _swap = (i, j) => [this._heap[i], this._heap[j]] = [this._heap[j], this._heap[i]];
+  
+  _ReHeapUp = () => {
+    let bottom = this.size() - 1;
+    while (bottom > top && this._greater(bottom, parent(bottom))) {
+      this._swap(bottom, parent(bottom));
+      bottom = parent(bottom);
+    }
+  }
+  
+  _ReHeapDown = () => {
+    let node = top;
+    while (
+      (left(node) < this.size() && this._greater(left(node), node)) ||
+      (right(node) < this.size() && this._greater(right(node), node))) 
     {
-      let parent;
-      if (bottom > root) {
-        parent = Math.floor((bottom) / 2);
-        if (this.elements[parent] > this.elements[bottom]) 
-        {
-          const left = this.elements[parent];
-          this.elements[parent] = this.elements[bottom];
-          this.elements[bottom] = left;
-          this.ReheapUp(root, parent);
-        }
-      }
+      let maxChild = this._greater(right(node), left(node)) ? right(node) : left(node);
+      this._swap(node, maxChild);
+      node = maxChild;
     }
-  
-    ReHeapDown(root, bottom) {
-      let minChild, 
-          rightChild, 
-          leftChild;
-
-      leftChild = root * 2;
-      rightChild = root * 2 + 1;
-
-      if (leftChild <= bottom)
-      {
-        if (leftChild == bottom) 
-            minChild = leftChild;
-        else
-        {
-          if (this.elements[leftChild] >= this.elements[rightChild])
-            minChild = rightChild;
-          else
-            minChild = leftChild;
-        }
-        if (this.elements[root] > this.elements[minChild])
-        {
-            const left = this.elements[root];
-            this.elements[root] = this.elements[minChild];
-            this.elements[minChild] = left;
-            this.ReHeapDown(minChild, bottom);
-        }
-      }
-    }
-  }
-
-class PQType {
-  constructor() {
-    this.heap = new HeapType();
-    this.length = 0;
-  }
-
-  Dequeue() {
-    if (this.heap.elements.length == 0)
-      return null;
-    const item = this.heap.elements[0];
-    this.heap.elements[0] = this.heap.elements[this.length - 1];
-    this.length--;
-    this.heap.elements.length = this.length;
-    this.heap.ReHeapDown(0, this.length - 1);
-    return item;
-  }
-
-  Enqueue(newItem) {
-    this.length++;
-    this.heap.elements[this.length - 1] = newItem;
-    this.heap.ReheapUp(0, this.length - 1);
   }
 }
 
@@ -88,22 +65,22 @@ var mergeKLists = function(lists) {
   if (lists.length < 1) return null;
   else if (lists.length == 1) return lists[0];
   
-  const PQ = new PQType();
-  for (list of lists) {
-     while (list !== null) {
-      PQ.Enqueue(list.val)
+  const PQ = new PriorityQueue();
+  for (let list of lists) {
+    while (list != null) {
+      PQ.enqueue(list.val);
       list = list.next;
-     }
+    }
   }
-
-  if (PQ.length == 0) return null;
-  const sortedList = new ListNode(PQ.Dequeue());
   
+  if (!PQ.size()) return null;
+  
+  const sortedList = new ListNode(PQ.dequeue());
   let head = sortedList;
-  while (PQ.length) {
-    head.next = new ListNode(PQ.Dequeue());
+  
+  while (PQ.size()) {
+    head.next = new ListNode(PQ.dequeue());
     head = head.next;
   }
-  
   return sortedList;
 }
