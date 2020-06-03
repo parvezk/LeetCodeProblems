@@ -1,3 +1,47 @@
+// APPROACH 1 (SHORT VERSION)
+/**
+ * @param {string[]} words
+ * @return {string[][]}
+ */
+class Solution {
+  
+  constructor(words) {
+    this.words = words;
+    this.N = words[0].length;
+    this.results = []
+  }
+  
+  wordSquares() {
+    for (let word of this.words) {
+      this.backtracking(1, [word]);
+    }
+    return this.results;
+  }
+  
+  backtracking(step, word_squares) {
+    if (step == this.N) {
+      this.results.push(word_squares.slice())
+      return;
+    }
+
+    let prefix = '';
+    for (let word of word_squares) prefix += word.charAt(step);
+    const getWordsWithPrefix = this.words.filter(w => w.startsWith(prefix));
+
+    for (let w of getWordsWithPrefix) {
+      word_squares.push(w)
+      this.backtracking(step + 1, word_squares);
+      word_squares.pop();
+    }
+  }
+}
+
+var wordSquares = function(words) {
+  const sol = new Solution(words);
+  return sol.wordSquares();
+};
+
+
 // APPROACH 1
 /**
  * @param {string[]} words
