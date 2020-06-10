@@ -3,6 +3,17 @@
  * @param {number} target
  * @return {number[]}
  */
+// Approach 1 (Mostly O(logN))
+var searchRange = (nums, target) => {
+  const res = [-1, -1];
+  
+  if (!nums.includes(target))
+    return res;
+  else
+    return [nums.indexOf(target), nums.lastIndexOf(target)]; 
+}
+
+// Approach 2
 const extremeInsertionIndex = (nums, target, left) => {
   let lo = 0;
   let hi = nums.length;
