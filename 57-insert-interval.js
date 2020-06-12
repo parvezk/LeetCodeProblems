@@ -1,8 +1,3 @@
-/**
- * @param {number[][]} intervals
- * @param {number[]} newInterval
- * @return {number[][]}
- */
 /*
 [[1,3],[6,9]]
 [2,5]
@@ -10,22 +5,35 @@
 [4,8]
 [[1,5]]
 [0,0]
+[]
+[5,7]
+[[1,5]]
+[2,3]
 */
+/**
+ * @param {number[][]} intervals
+ * @param {number[]} newInterval
+ * @return {number[][]}
+ */
 var insert = function(intervals, newInterval) {
+  if (!intervals.length) return [newInterval];
+  
   let pos = 0;
-  while (newInterval[0] > intervals[pos][0]) pos++;
-
+  while (pos < intervals.length && newInterval[0] > intervals[pos][0])
+    pos++;
+  
   intervals.splice(pos, 0, newInterval);
-
-  let output = [intervals[0]];
-
-  for (let i = 1; i < intervals.length; i++) {
-    let interval = intervals[i],
-      lastMerged = output[output.length - 1];
-
-    if (interval[0] <= lastMerged[1])
-      lastMerged[1] = Math.max(lastMerged[1], interval[1]);
-    else output.push(interval);
+  
+  const output = [intervals.shift()];
+  
+  for (let interval of intervals) {
+    let last = output[output.length - 1];
+    
+    if (last[1] >= interval[0])
+      last[1] = Math.max(last[1], interval[1]);
+    else
+      output.push(interval);
   }
+
   return output;
 };
