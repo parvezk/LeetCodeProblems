@@ -1,0 +1,3 @@
+// use cases for reduce
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce
+https://24ways.org/2019/five-interesting-ways-to-use-array-reduce/
