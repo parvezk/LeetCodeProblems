@@ -18,17 +18,16 @@ Logger.prototype.shouldPrintMessage = function(timestamp, message) {
     this.HashMap.set(message, timestamp);
     return true;
   } else {
-    let prev = this.HashMap.get(message);
-    if (timestamp - prev >= 10) {
+    const prevTime = this.HashMap.get(message);
+    if (timestamp - prevTime >= 10) {
       this.HashMap.set(message, timestamp);
       return true;
-    } else {
-      return false;
-    }
+    } else
+        return false;
   }
 };
 
-/**
+/** 
  * Your Logger object will be instantiated and called as such:
  * var obj = new Logger()
  * var param_1 = obj.shouldPrintMessage(timestamp,message)
