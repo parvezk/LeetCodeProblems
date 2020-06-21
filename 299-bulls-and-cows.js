@@ -4,6 +4,47 @@
  * @return {string}
  */
 var getHint = function(secret, guess) {
+  const HashTable = new Map();
+  let A = 0, B = 0;
+  
+  for (let i = 0; i < secret.length; i++) { 
+    let c1 = secret.charAt(i), c2 = guess.charAt(i);
+   
+    if (c1 == c2) {
+      A++;
+    } else {
+      if (HashTable.has(c1))
+        HashTable.set(c1, HashTable.get(c1) + 1);
+      else
+        HashTable.set(c1, 1);
+      }
+    }
+  
+  for (let i = 0; i < secret.length; i++) {
+    let c1 = secret.charAt(i), c2 = guess.charAt(i);
+    
+    if (c1 != c2) {
+      
+      if (HashTable.has(c2)) {
+        B++;
+        
+        if (HashTable.get(c2) == 1)
+          HashTable.delete(c2)
+        else
+          HashTable.set(c2, HashTable.get(c2) - 1);
+      }
+    }
+  }
+  
+  return A + 'A' + B + 'B';
+};
+
+/**
+ * @param {string} secret
+ * @param {string} guess
+ * @return {string}
+ */
+var getHint = function(secret, guess) {
   
   let map = new Map(), res = '', temp1 = secret, temp2 = guess;
   
@@ -43,12 +84,18 @@ var getHint = function(secret, guess) {
 "7810"
 "1123"
 "0111"
-"1"
-"0"
-"11"
-"10"
-"11"
-"11"
 "11"
 "01"
+"11"
+"11"
+"11"
+"10"
+"1"
+"0"
+"011"
+"110"
+"1122"
+"1222"
+"1234"
+"0111"
 */
