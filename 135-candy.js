@@ -3,29 +3,26 @@
  * @return {number}
  */
 var candy = function(ratings) {
-  let map = new Map();
-  
-  for (let i = 0; i < ratings.length; i++)
-    map.set(i, 1);
-  
-  for (let i = 0; i < ratings.length; i++) {
-    
-    if (!Number.isNaN(ratings[i - 1]) && ratings[i] > ratings[i - 1]) {
-      //if (map.get(i) < map.get(i - 1))
-        map.set(i, map.get(i - 1) + 1);   
+  let candies = new Array(ratings.length).fill(1),
+      flag = true, sum = 0;
+
+  while (flag) {
+    flag = false;
+    for (let i = 0; i < ratings.length; i++) {
+      
+      if (i != ratings.length - 1 && ratings[i] > ratings[i + 1] && candies[i] <= candies[i + 1]) {
+        candies[i] = candies[i + 1] + 1;
+        flag = true;
+      }
+      
+      if (i > 0 && ratings[i] > ratings[i - 1] && candies[i] <= candies[i - 1]) {
+        candies[i] = candies[i - 1] + 1;
+        flag = true;
+      }
     }
   }
-  
-  for (let i = ratings.length - 1; i >= 0; i--) {
-    
-    if (!Number.isNaN(ratings[i + 1]) && ratings[i] > ratings[i + 1]) {
-      if (map.get(i) - map.get(i + 1) <= 1)
-        map.set(i, map.get(i + 1) + 1);
-    }
-    
-  }
-  //console.log(map)
-  return [...map.values()].reduce((acc, num) => acc += num);
+  sum = candies.reduce((accum, val) => accum += val);
+  return sum;
 };
 
 /*
