@@ -10,9 +10,10 @@ const helper = (elems) => {
       const first = elems.shift();
       let remains = helper(elems);
       let arr = [];
-      for (let p of remains) {
-        for (let pos = 0; pos <= p.length; pos++) {
-          const copy = p.slice();
+      for (let permutation of remains) {
+        
+        for (let pos = 0; pos <= permutation.length; pos++) {
+          const copy = permutation.slice();
           copy.splice(pos, 0, first)
           arr.push(copy);
         }
