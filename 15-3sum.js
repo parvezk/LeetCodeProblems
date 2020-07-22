@@ -14,12 +14,16 @@ var threeSum = function(nums) {
 
     while (j < k) {
       if (nums[i] + nums[j] + nums[k] == 0) {
+        
         res.push([nums[i], nums[j], nums[k]]);
         j++;
 
-        while (j < k && nums[j] == nums[j - 1]) j++;
-      } else if (nums[i] + nums[j] + nums[k] < 0) j++;
-      else k--;
+        while (j < k && nums[j] == nums[j - 1])
+        j++;
+      } else if (nums[i] + nums[j] + nums[k] < 0) 
+        j++;
+      else 
+        k--;
     }
   }
   return res;
