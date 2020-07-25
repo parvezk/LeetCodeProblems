@@ -3,6 +3,7 @@
  * @param {string} order
  * @return {boolean}
  */
+
 var isAlienSorted = function(words, order) {
     for (let i = 0; i < words.length - 1; i++) {
       let word1 = words[i],
