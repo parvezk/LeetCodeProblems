@@ -2,6 +2,65 @@
  * @param {number[]} A
  * @return {number}
  */
+
+  //TreeMap higher and lower keys
+  var lowerKey = (arr, v) => {
+    let min = Number.MIN_SAFE_INTEGER, t = min;
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] < v && arr[i] >= t)
+            t = arr[i];
+    }
+    return (t == min) ? null : t;
+}
+
+var higherKey = (arr, v) => {
+    let max = Number.MAX_SAFE_INTEGER, t = max;
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] > v && arr[i] <= t)
+            t = arr[i];
+    }
+    return (t == max) ? null : t;
+}
+// Approach 2: Tree Map
+var oddEvenJumps = function(A) {
+  let N = A.length;
+  if (N <= 1) return N;
+   const odd = new Array(N).fill(false),
+         even = new Array(N).fill(false);
+   odd[N-1] = even[N-1] = true;
+   
+   let map = new Map();
+   map.set(A[N-1], N-1);
+   
+   for (let i = N-2; i >= 0; --i) {
+       let v = A[i];
+       
+       if(map.has(v)) {
+           odd[i] = even[map.get(v)];
+           even[i] = odd[map.get(v)];
+       } else {
+           
+           let keys = [...map.keys()],
+               lower = lowerKey(keys, v),
+               higher = higherKey(keys, v);
+           
+           if (lower != null)
+               even[i] = odd[map.get(lower)];
+           if (higher != null)
+               odd[i] = even[map.get(higher)];
+       }
+       map.set(v, i);
+   }
+   
+   let ans = 0;
+   for (let b of odd) if (b) ans++;
+   return ans;
+};
+
+/**
+ * @param {number[]} A
+ * @return {number}
+ */
 var oddEvenJumps = function(A) {
   let N = A.length;
   
