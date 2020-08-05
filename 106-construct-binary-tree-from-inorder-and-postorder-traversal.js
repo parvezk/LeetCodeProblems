@@ -1,8 +1,9 @@
 /**
  * Definition for a binary tree node.
- * function TreeNode(val) {
- *     this.val = val;
- *     this.left = this.right = null;
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
  * }
  */
 /**
@@ -10,52 +11,24 @@
  * @param {number[]} postorder
  * @return {TreeNode}
  */
-// Recursion
-const buildTree = (inorder, postorder) => {
-  const helper = (in_left, in_right) => {
+var buildTree = function(inorder, postorder) {
+  
+  const helper = (inStart, inEnd) => {
     // Base case 1
-    if (in_left > in_right) return null;
-
+    if (inStart > inEnd) return null;
     const newNode = new TreeNode(postorder.pop());
     // Base case 2
-    if (in_left == in_right) return newNode;
-
+    if (inStart == inEnd) return newNode;
+    
     // Recursive case
-    // Find current node index in inorder traversal
+    //get index of current node in inorder traversal;
     const index = inorder.indexOf(newNode.val);
-    // Recurse in Postorder logic: construct right subtree, then left subtre
-    newNode.right = helper(index + 1, in_right);
-    newNode.left = helper(in_left, index - 1);
-
+    // Recurse post-order: construct right subtree, then construct left subtree
+    newNode.right = helper(index + 1, inEnd);
+    newNode.left = helper(inStart, index - 1);
+    
     return newNode;
-  };
-
+  }
+  
   return helper(0, inorder.length - 1);
-};
-
-// WITH OUT left and right boundary indexes
-var buildTree = function(inorder, postorder) {
-  const helper = (postOrder, inOrder) => {
-    // Base case 1
-    if (!postOrder.length) return null;
-
-    const newNode = new TreeNode(postOrder.pop());
-
-    // Base case 2
-    if (!postOrder.length) return newNode;
-
-    // Recursive Case 2
-    const inIndex = inOrder.indexOf(newNode.val);
-    newNode.left = helper(
-      postOrder.slice(0, inIndex),
-      inOrder.slice(0, inIndex)
-    );
-    newNode.right = helper(
-      postOrder.slice(inIndex),
-      inOrder.slice(inIndex + 1)
-    );
-
-    return newNode;
-  };
-  return helper(postorder, inorder);
 };
