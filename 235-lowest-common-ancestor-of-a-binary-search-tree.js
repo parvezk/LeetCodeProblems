@@ -13,6 +13,25 @@
  */
 var lowestCommonAncestor = function(root, p, q) {
   let ans = null;
+  
+  const recurseTree = (node) => {
+      if (node == null) return false;
+  
+      const left = recurseTree(node.left);
+      const right = recurseTree(node.right);
+      const mid = (node == p) || (node == q);
+
+      if (left + mid + right >= 2) 
+        ans = node;
+      return (left + mid + right);
+  }
+  
+  recurseTree(root);
+  return ans;
+};
+
+var lowestCommonAncestor = function(root, p, q) {
+  let ans = null;
 
   const recurseTree = (node, p, q) => {
     if (node == null) return false;
