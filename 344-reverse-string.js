@@ -2,18 +2,27 @@
  * @param {character[]} s
  * @return {void} Do not return anything, modify s in-place instead.
  */
+
+var reverseString = function(s) {
+  return s.reverse();
+}
+
 // Using Recursion
-var reverseString = function(s, start = 0, end = s.length - 1) {
-  if (s.length <= 1) return s;
-
-  if (start >= end) return;
-  else {
-    const temp = s[start];
-    s[start] = s[end];
-    s[end] = temp;
-
-    reverseString(s, start + 1, end - 1);
+var reverseString = function(s) {
+  if (s.length == 1) return s;
+  const reverse = (s, start, end) => {
+    if (start >= end)
+      return;
+    else {
+      const tmp = s[start];
+      s[start] = s[end];
+      s[end] = tmp;
+      
+      reverse(s, start + 1, end - 1);
+    }
   }
+  
+  return reverse(s, 0, s.length - 1);
 };
 
 var reverseString = function(s, start = 0, end = s.length - 1) {
@@ -35,3 +44,4 @@ var reverseString = function(s, start = 0, end = s.length - 1) {
     // Thus reducing the problem SIZE to base size
     reverseString(s, start + 1, end - 1);
   }
+}
