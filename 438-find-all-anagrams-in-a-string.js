@@ -43,6 +43,7 @@ const matches = (map1, map2) => {
       
       if (i >= np) {
         let ch = s.charAt(i - np);
+        
         if (sCount.get(ch) == 1)
           sCount.delete(ch);
         else
