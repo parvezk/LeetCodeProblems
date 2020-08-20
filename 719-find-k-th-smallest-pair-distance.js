@@ -4,13 +4,7 @@
  * @return {number}
  */
 /*
-List<Integer> list = new ArrayList<Integer>(mySet);
-for (int i = 0; i < list .size(); i++)
-    for (int j = i + 1; j < list .size(); j++)
-*/
-
-/*
-//Solution 1
+//FAILED
 
 var smallestDistancePair = function(nums, k) {
   nums.sort((a, b) => a - b);
@@ -29,9 +23,9 @@ var smallestDistancePair = function(nums, k) {
   //console.log(mapArr)
   return mapArr[k-1]
 };
-
 */
 
+// Binary Search + Sliding Window [Accepted]
 var smallestDistancePair = function(nums, k) {
   nums.sort((a, b) => a - b);
   
@@ -40,7 +34,7 @@ var smallestDistancePair = function(nums, k) {
   
   while (lo < hi)
   {
-    let mi = parseInt((lo + hi) / 2);
+    let mi = parseInt((hi + lo) / 2);
     let count = 0, left = 0;
     
     for (let right = 0; right < nums.length; ++right)
