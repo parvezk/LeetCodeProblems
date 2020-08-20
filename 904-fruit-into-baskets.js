@@ -2,42 +2,34 @@
  * @param {number[]} tree
  * @return {number}
  */
-/*
-[1,2,1]
-[0,1,6,6,4,4,6]
-[0,1,2,2]
-[1,2,3,2,2]
-[3,3,3,1,2,1,1,2,3,3,4]
-[1,0,0,0,1,0,4,0,4]
-*/
 var totalFruit = function(trees) {
-  let map = new Map(), set = new Set([trees[0]]);
-      prev = trees[0], start = 0, count = 1;
+  const map = new Map();
+  let basket = new Set([trees[0]]);
   
-  trees.reduce((accum, elem, index) => {
-    set.add(elem)
+  let startIndex = 0, fruitCount = 1,
+      prev = trees[0], curr;
+  
+  for (let i = 1; i < trees.length; i++) {
+    curr = trees[i];
+    basket.add(curr);
     
-    if (set.size > 2) {
-      map.set(start, count)
-      let segment = trees.slice(start + 1, index)
-
-      count = 0;
+    if (basket.size > 2) {
+      map.set(startIndex, fruitCount);
+      fruitCount = 0;
       
-      let back = index - 1;
-      while (trees[back] == prev) {
-        count++;
-        back--;
+      let before = i - 1;
+      while (trees[before] == prev) {
+        fruitCount++;
+        before--;
       }
-
-      start = index - 1;
-      set = new Set([prev, elem]);
+      
+      startIndex = i - 1;
+      basket = new Set([prev, curr])
     }
     
-    count++;
-    prev = elem;
-  });
-  
-  map.set(start, count)
-  //console.log(map)
-  return Math.max(...map.values())
-}
+    prev = curr;
+    fruitCount++;
+  }
+  map.set(startIndex, fruitCount);
+  return Math.max(...map.values());
+};
