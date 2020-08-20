@@ -2,23 +2,23 @@
  * @param {string[]} emails
  * @return {number}
  */
+/**
+ * @param {string[]} emails
+ * @return {number}
+ */
 var numUniqueEmails = function(emails) {
-    let set = new Set();
+  const set = new Set();
+  
+  for (let email of emails) {
+    email = email.split('@');
     
-    for (let email of emails) {
-      email = email.split('@');
-      let localName = email[0]
-      
-      localName = localName.replace(/\./g,'');
-      localName = localName.replace(/\+.*/,'');
-      
-      email = localName + '@' + email[1];
-      set.add(email)
-    }
-    
-    //console.log(set)
-    return set.size;
-    
-  };
+    let username = email[0].replace(/\./ig, '');
+    username = username.replace(/\+.*/ig, '');
+
+    email = username + '@' + email[1];
+    set.add(email);
+  }
+  return set.size;
+};
   
   
