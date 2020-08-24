@@ -10,11 +10,7 @@
 // 1. Sliding Window Template based
 var lengthOfLongestSubstring = function(s) {
   const map = new Map();
-
-  let ans = 0,
-    counter = 0,
-    begin = 0,
-    end = 0;
+  let ans = 0, counter = 0, begin = 0, end = 0;
 
   while (end < s.length) {
     let c = s.charAt(end);
@@ -39,31 +35,29 @@ var lengthOfLongestSubstring = function(s) {
 // Time: O(2n) = O(n)
 // Space: O(min(m, n)); O(k) for window
 var lengthOfLongestSubstring = function(s) {
-  let n = s.length,
-    ans = 0,
-    i = 0,
-    j = 0;
-  let set = new Set();
+  let n = s.length, ans = 0, i = 0, j = 0;
+  const set = new Set();
 
   while (i < n && j < n) {
     // try to extend the range [i, j]
     if (!set.has(s.charAt(j))) {
       set.add(s.charAt(j++));
       ans = Math.max(ans, j - i);
-    } else set.delete(s.charAt(i++));
+    } else 
+        set.delete(s.charAt(i++));
   }
   return ans;
 };
 
 // 3. Sliding Window Optimized
 var lengthOfLongestSubstring = function(s) {
-  let ans = 0,
-    n = s.length;
+  let ans = 0, n = s.length;
   // current index of characters
-  let map = new Map();
+  const map = new Map();
   // try to extend the range [i, j]
   for (let i = 0, j = 0; j < n; j++) {
-    if (map.has(s.charAt(j))) i = Math.max(map.get(s.charAt(j)), i);
+    if (map.has(s.charAt(j))) 
+      i = Math.max(map.get(s.charAt(j)), i);
 
     ans = Math.max(ans, j - i + 1);
     map.set(s.charAt(j), j + 1);
@@ -74,10 +68,7 @@ var lengthOfLongestSubstring = function(s) {
 // 4. Brute force
 var lengthOfLongestSubstring = function(s) {
   if (!s.length) return 0;
-
-  let substr = "";
-  let prev = null;
-  let long = 1;
+  let substr = "", prev = null, long = 1;
 
   for (const c of s) {
     if (!substr.includes(c)) substr += c;

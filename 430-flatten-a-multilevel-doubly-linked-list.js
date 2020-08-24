@@ -12,7 +12,7 @@
  * @return {Node}
  */
 
-// DFS by Recursion
+// DFS by Iteration
 var flatten = function(head) {
   if (head == null) return null;
 
@@ -23,8 +23,10 @@ var flatten = function(head) {
     next = curr.next;
 
     if (curr.child != null) {
-      if (curr.next != null) stack.push(curr.next);
-
+      
+      if (curr.next != null)
+        stack.push(curr.next);
+      
       curr.next = curr.child;
       curr.next.prev = curr;
       curr.child = null;
@@ -32,11 +34,32 @@ var flatten = function(head) {
       curr.next = stack.pop();
       curr.next.prev = curr;
     }
-
+    
     curr = curr.next;
   }
   return head;
 };
 
-// TODO
-// DFS By Iteration
+// DFS By Recursion
+const flattenDFS = (prev, curr) => {
+  // pre-order traversal methods
+  if (curr == null) return prev;
+  prev.next = curr;
+  curr.prev = prev;
+  
+  let tmpNext = curr.next;
+  let tail = flattenDFS(curr, curr.child);
+  curr.child = null;
+  
+  return flattenDFS(tail, tmpNext);
+}
+
+
+var flatten = function(head) {
+  if (head == null) return head;
+  let pseudoHead = new Node(0, null, head, null);
+  
+  flattenDFS(pseudoHead, head);
+  pseudoHead.next.prev = null;
+  return pseudoHead.next;
+}

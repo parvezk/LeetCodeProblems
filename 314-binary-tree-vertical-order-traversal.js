@@ -37,3 +37,29 @@ var verticalOrder = root => {
     for (let k of sortedKeys) output.push(columnTable.get(k))
     return output;
   }
+
+  // First attempt - works fine except left to right order
+  var verticalOrder = function(root) {
+    let HashMap = new Map();
+    
+    const preOrder = (node, HashMap, index) => {
+      //if (node == null) return [];
+  
+      if (node !== null) {
+  
+        if (HashMap.has(index))
+          HashMap.get(index).push(node.val);
+        else
+          HashMap.set(index, [node.val]);
+  
+        preOrder(node.left, HashMap, index - 1);
+        preOrder(node.right, HashMap, index + 1);
+      }
+      return HashMap;
+    }
+    
+    let result = preOrder(root, HashMap, 0);
+    result = new Map([...HashMap.entries()].sort((a, b) => a[0] - b[0]));
+    //console.log()
+    return [...result.values()];
+  }  
