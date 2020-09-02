@@ -4,27 +4,22 @@
  */
 
 // Approach 1
-// Using Stack and HashMap
+// Using Stack and Hashmap
 var isValid = function(s) {
-  
   const stack = [],
-        map = new Map();
-  
-  map.set(')', '(');
-  map.set('}', '{');
-  map.set(']', '[');
+        map = new Map([[')', '('], ['}', '{'], [']', '[']]);
   
   for (let i = 0; i < s.length; i++) {
-    let c = s.charAt(i);
+    let elem = s.charAt(i);
     
-    if (map.has(c)) {
-      let stackElem = stack.length ? stack.pop() : '#';
+    if (map.has(elem)) {
+      let stackElem = stack.length ? stack.pop() : null;
       
-      if (stackElem != map.get(c))
+      if (map.get(elem) != stackElem)
         return false;
       
     } else
-        stack.push(c);
+        stack.push(elem);
   }
   return stack.length == 0;
 };
