@@ -2,52 +2,56 @@
  * @param {string} s
  * @return {number}
  */
-/**
- * @param {string} s
- * @return {number}
- */
-
-// 1. Sliding Window Template based
+// Sliding Window + HashMap
 var lengthOfLongestSubstring = function(s) {
+  if (s.length <= 1) return s.length;
+  
   const map = new Map();
-  let ans = 0, counter = 0, begin = 0, end = 0;
-
+  let begin = 0, end = 0, 
+      counter = 0, ans = 0;
+  
   while (end < s.length) {
-    let c = s.charAt(end);
-    if (map.has(c)) map.set(c, map.get(c) + 1);
-    else map.set(c, 1);
-
-    if (map.get(c) > 1) counter++;
+    let c = s.charAt(end++);
     // Slide window right
-    end++;
+    if (map.has(c))
+      map.set(c, map.get(c) + 1);
+    else
+      map.set(c, 1);
+    
+    if (map.get(c) > 1) counter++;
     // Slide window left
     while (counter > 0) {
-      let startChar = s.charAt(begin++);
-      if (map.get(startChar) > 1) counter--;
-      map.set(startChar, map.get(startChar) - 1);
+      let beginChar = s.charAt(begin++);
+      
+      if (map.get(beginChar) > 1) counter--;
+      map.set(beginChar, map.get(beginChar) - 1);
     }
     ans = Math.max(ans, end - begin);
   }
   return ans;
 };
 
-// 2. Sliding Window [i, j) with Hash Set
+// Sliding Window [i, j) with Hash Set
 // Time: O(2n) = O(n)
-// Space: O(min(m, n)); O(k) for window
+// Space: O(min(i, j)); O(k) for window
 var lengthOfLongestSubstring = function(s) {
-  let n = s.length, ans = 0, i = 0, j = 0;
+  if (s.length <= 1) return s.length;
+  
   const set = new Set();
-
-  while (i < n && j < n) {
-    // try to extend the range [i, j]
-    if (!set.has(s.charAt(j))) {
+  let i = 0, j = 0, res = 0;
+  
+  // extend the range [i, j)
+  while (j < s.length) {
+    
+    if (!set.has(s.charAt(j)))
       set.add(s.charAt(j++));
-      ans = Math.max(ans, j - i);
-    } else 
-        set.delete(s.charAt(i++));
+    else
+      set.delete(s.charAt(i++));
+    
+    res = Math.max(res, j - i);
   }
-  return ans;
-};
+  return res;
+}
 
 // 3. Sliding Window Optimized
 var lengthOfLongestSubstring = function(s) {
